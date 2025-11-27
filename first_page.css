@@ -1,0 +1,282 @@
+/* --- CSS RESET & GLOBAL STYLES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-accent: #FF6B6B;
+    --secondary-accent: #4ECDC4;
+    --text-dark: #333333;
+    --text-light: #F8F8F8;
+    --bg-light: #FFFFFF;
+    --bg-soft: #F7F7F7;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 { font-size: 3.8rem; color: var(--text-light); }
+h1 strong { color: var(--primary-accent); }
+
+h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3.5rem; }
+h3 { font-size: 1.6rem; }
+
+.sub-headline {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    color: var(--text-dark);
+}
+.section-title.light-text {
+    color: var(--text-light);
+}
+
+.cta-subtext {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-top: 15px;
+    opacity: 0.9;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 1.05rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-accent);
+    color: white;
+    box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: #e65c5c;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-accent);
+    border: 2px solid var(--primary-accent);
+    padding: 13px 30px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.large-btn {
+    padding: 18px 45px;
+    font-size: 1.3rem;
+    margin-top: 25px;
+}
+
+
+.navbar {
+    background-color: var(--bg-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--primary-accent);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a:not(.btn) {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover:not(.btn) {
+    color: var(--primary-accent);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    position: relative;
+    height: 90vh; /* viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden; /* Ensure image doesn't bleed */
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('./images/hero-guitar-player.jpg') no-repeat center center/cover;
+    /* This is where you put your hero image! */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 0;
+    max-width: 800px;
+}
+
+/* --- GENERAL SECTION STYLES --- */
+.section {
+    padding: 80px 0;
+}
+
+.how-it-works {
+    background-color: var(--bg-light);
+}
+
+.what-you-get {
+    background-color: var(--bg-soft);
+}
+
+.final-cta-section {
+    background-color: var(--primary-accent); /* Use accent color for strong CTA */
+    color: var(--text-light);
+    text-align: center;
+    padding: 100px 0;
+}
+
+/* --- HOW IT WORKS GRID --- */
+.grid-4-weeks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.week-card {
+    background-color: var(--bg-soft);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.week-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.week-card h3 {
+    color: var(--primary-accent);
+    margin-bottom: 15px;
+}
+
+/* --- WHAT YOU GET FEATURES GRID --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-item .icon {
+    font-size: 3.5rem;
+    color: var(--secondary-accent); /* Teal for icons */
+    display: block;
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--text-dark); /* Dark grey footer */
+    color: #cccccc;
+    padding: 15px 0;
+    font-size: 0.9rem;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.footer-links a {
+    color: #cccccc;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--primary-accent);
+}
+
