@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 1</title>
+    <link rel="stylesheet" href="public/week.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Guitar Bootcamp</div>
+      <ul class="nav-links">
+        <li><a href="/home">Home</a></li>
+        <li><a href="#">My Account</a></li>
+        <li>
+          <a href="/logout" class="btn btn-secondary" style="padding: 8px 20px"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <header class="page-header">
+      <div class="container">
+        <h1>Week 1: <strong>Foundations</strong></h1>
+        <p class="sub-headline">
+          Master the basics and get comfortable with your instrument.
+        </p>
+      </div>
+    </header>
+
+    <div class="container section">
+      <div class="lesson-cards">
+        <a
+          href="lesson1"
+          class="lesson-card"
+          data-status="<%= currentLesson === 1 ? 'in_progress' : currentLesson > 1 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 1</h3>
+          <p>Get to know your guitar!</p>
+        </a>
+        <a
+          href="lesson2"
+          class="lesson-card"
+          data-status="<%= currentLesson === 2 ? 'in_progress' : currentLesson > 2 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 2</h3>
+          <p>What are notes and chords?</p>
+        </a>
+        <a
+          href="lesson3"
+          class="lesson-card"
+          data-status="<%= currentLesson === 3 ? 'in_progress' : currentLesson > 3 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 3</h3>
+          <p>Proper posture and hand positioning</p>
+        </a>
+        <a
+          href="lesson4"
+          class="lesson-card"
+          data-status="<%= currentLesson === 4 ? 'in_progress' : currentLesson > 4 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 4</h3>
+          <p>Fretting basics</p>
+        </a>
+        <a
+          href="lesson5"
+          class="lesson-card"
+          data-status="<%= currentLesson === 5 ? 'in_progress' : currentLesson > 5 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 5</h3>
+          <p>Your first chord!</p>
+        </a>
+        <a
+          href="lesson6"
+          class="lesson-card"
+          data-status="<%= currentLesson === 6 ? 'in_progress' : currentLesson > 6 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 6</h3>
+          <p>Your second chord!</p>
+        </a>
+        <a
+          href="lesson7"
+          class="lesson-card"
+          data-status="<%= currentLesson === 7 ? 'in_progress' : currentLesson > 7 ? 'completed' : 'not_started' %>"
+        >
+          <h3>Lesson 7</h3>
+          <p>Switching between chords</p>
+        </a>
+      </div>
+    </div>
+    <div class="redirects">
+      <a href="/home" class="btn btn-secondary">Go back</a>
+      <a
+        href="/week2"
+        class="btn btn-secondary"
+        data-status="<%= currentLesson > 7 ? 'completed' : 'in_progress' %>"
+        >Go to Week 2</a
+      >
+    </div>
+  </body>
+</html>

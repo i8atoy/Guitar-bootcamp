@@ -1,0 +1,219 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-accent: #ff6b6b;
+  --secondary-accent: #4ecdc4;
+  --text-dark: #333333;
+  --text-light: #f8f8f8;
+  --bg-light: #ffffff;
+  --bg-soft: #f7f7f7;
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Open Sans", sans-serif;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --greyed-out: #b0b0b0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text-light);
+}
+
+h1 strong {
+  color: var(--primary-accent);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
+}
+
+.sub-headline {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 400;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.navbar {
+  background-color: var(--bg-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  color: var(--primary-accent);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a:not(.btn) {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover:not(.btn) {
+  color: var(--primary-accent);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-accent);
+  border: 2px solid var(--primary-accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-accent);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-secondary[data-status="in_progress"] {
+  border-color: var(--greyed-out);
+  color: var(--greyed-out);
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-secondary[data-status="completed"] {
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.btn-secondary[data-status="completed"]:hover {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.page-header {
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+    url("./images/hero-guitar-player.jpg") no-repeat center center/cover;
+  padding: 80px 0;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section {
+  padding: 40px 0 80px 0;
+  flex: 1;
+}
+
+.lesson-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.lesson-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-soft);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-dark);
+  border-top: 6px solid transparent;
+}
+
+.lesson-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-light);
+}
+
+.lesson-card h3 {
+  color: var(--primary-accent);
+  margin-bottom: 12px;
+}
+
+.lesson-card p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.lesson-card[data-status="completed"] {
+  border-top-color: var(--success-color);
+  cursor: pointer;
+}
+
+.lesson-card[data-status="in_progress"] {
+  border-top-color: var(--warning-color);
+  cursor: pointer;
+}
+
+.lesson-card[data-status="not_started"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.redirects {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}

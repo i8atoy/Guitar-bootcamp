@@ -15,9 +15,13 @@
     <nav class="navbar">
       <div class="logo">Guitar Bootcamp</div>
       <ul class="nav-links">
-        <li><a href="">Home</a></li>
-        <li><a href="">-</a></li>
-        <li><a href="">My account</a></li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="#">My Account</a></li>
+        <li>
+          <a href="/logout" class="btn btn-secondary" style="padding: 8px 20px"
+            >Logout</a
+          >
+        </li>
       </ul>
     </nav>
 
@@ -33,7 +37,10 @@
         <div class="progress-container">
           <div class="progress-label">Progress</div>
           <div class="progress-bracket">
-            <div class="progress-percentage"></div>
+            <div
+              class="progress-percentage"
+              style="width: <%= totalProgress %>%"
+            ></div>
           </div>
         </div>
       </div>
@@ -43,34 +50,47 @@
       <div class="container">
         <h2 class="section-title">Continue where you left off!</h2>
         <div class="grid-4-weeks">
-          <div class="week-card">
+          <a
+            href="week1"
+            class="week-card"
+            data-status="<%= currentWeek === 1 ? 'in_progress' : currentWeek > 1 ? 'completed' : 'not_started' %>"
+          >
             <h3>Week 1: Foundations</h3>
             <p>
               Learn proper posture, tuning, essential finger exercises, and your
-              first 3 open chords.
+              first 2 open chords.
             </p>
-          </div>
-          <div class="week-card">
+          </a>
+          <a
+            href="/week2"
+            class="week-card"
+            data-status="<%= currentWeek === 2 ? 'in_progress' : currentWeek > 2 ? 'completed' : 'not_started' %>"
+          >
             <h3>Week 2: Rhythm & Strums</h3>
-            <p>
-              Master basic strumming patterns, develop timing with a metronome,
-              and practice smooth chord changes.
-            </p>
-          </div>
-          <div class="week-card">
+            <p>Practice basic strumming patterns and smooth chord changes.</p>
+          </a>
+          <a
+            href="/week3"
+            class="week-card"
+            data-status="<%= currentWeek === 3 ? 'in_progress' : currentWeek > 3 ? 'completed' : 'not_started' %>"
+          >
             <h3>Week 3: Your First Songs</h3>
             <p>
               Combine chords and rhythm to play 3 complete, popular songs. Build
               confidence and musicality.
             </p>
-          </div>
-          <div class="week-card">
+          </a>
+          <a
+            href="/week4"
+            class="week-card"
+            data-status="<%= currentWeek === 4 ? 'in_progress' : currentWeek > 4 ? 'completed' : 'not_started' %>"
+          >
             <h3>Week 4: Expanding Horizons</h3>
             <p>
               Introduce power chords, simple riffs, and a beginner fingerpicking
               pattern. Develop your unique style!
             </p>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -78,8 +98,7 @@
     <footer>
       <div class="container">
         <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#">About</a>
           <a href="#">Contact</a>
         </div>
       </div>

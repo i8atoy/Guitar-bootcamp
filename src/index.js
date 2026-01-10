@@ -12,11 +12,13 @@ const { randomUUID } = require("node:crypto");
 const cookieParser = require("cookie-parser");
 const db = drizzle(process.env.DATABASE_URL);
 const { isLoggedIn, isNotLoggedIn } = require("./middleware/auth");
-const { initUserProgress } = require("./query");
+const { DbClient } = require("./query");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set("view engine", "ejs");
+
+const dbClient = new DbClient(db);
 
 // req.userid is the user that is currently logged in. Saved in database and session id is stored as a cookie
 // so you check for req.userid to see who is logged in, and then find what you need.
@@ -43,15 +45,13 @@ app.use(async (req, res, next) => {
 });
 
 app.get("/home", isLoggedIn, async (req, res) => {
-  const result = await db
-    .select({ name: usersTable.name })
-    .from(usersTable)
-    .where(eq(usersTable.id, req.userId));
-
-  const user = result[0];
-
+  const result = await dbClient.getUserData(req.userId);
+  const currentWeek = Math.ceil(result.lessonId / 7);
+  const totalProgress = (Math.max(result.lessonId - 1, 0) / 28) * 100;
   res.render("home", {
-    name: user.name,
+    name: result.name,
+    currentWeek,
+    totalProgress,
   });
 });
 
@@ -103,7 +103,7 @@ app.post("/register", async (req, res) => {
     const user = result[0];
     const sessionId = randomUUID();
     await db.insert(sessionTable).values({ id: sessionId, userId: user.id });
-    await initUserProgress(user.id);
+    await dbClient.initUserProgress(user.id);
     res.cookie("sessionId", sessionId);
   } catch (error) {
     console.error(error);
@@ -131,6 +131,35 @@ app.post("/login", async (req, res) => {
   res.redirect(`/home?id=${user.id}`);
 });
 
+app.get("/logout", (req, res) => {
+  res.clearCookie("sessionId");
+  res.redirect("/");
+});
+
 app.listen(3000, () => {
   console.log("server running");
+});
+
+app.get("/week1", isLoggedIn, async (req, res) => {
+  const result = await dbClient.getUserData(req.userId);
+  const currentLesson = result.lessonId;
+  res.render("week1", { currentLesson });
+});
+
+app.get("/week2", isLoggedIn, async (req, res) => {
+  const result = await dbClient.getUserData(req.userId);
+  const currentLesson = result.lessonId;
+  res.render("week2", { currentLesson });
+});
+
+app.get("/week3", isLoggedIn, async (req, res) => {
+  const result = await dbClient.getUserData(req.userId);
+  const currentLesson = result.lessonId;
+  res.render("week3", { currentLesson });
+});
+
+app.get("/week4", isLoggedIn, async (req, res) => {
+  const result = await dbClient.getUserData(req.userId);
+  const currentLesson = result.lessonId;
+  res.render("week4", { currentLesson });
 });
