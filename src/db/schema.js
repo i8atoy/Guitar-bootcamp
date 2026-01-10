@@ -1,8 +1,24 @@
-const { integer, pgTable, varchar } = require("drizzle-orm/pg-core");
+const { integer, pgTable, text, uuid } = require("drizzle-orm/pg-core");
 
-export const usersTable = pgTable("users", {
+const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
+  name: text().notNull(),
   age: integer().notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
+  email: text().notNull().unique(),
+  password: text().notNull(),
 });
+
+const sessionTable = pgTable("session", {
+  id: uuid().primaryKey(),
+  userId: integer(),
+});
+
+const userProgressTable = pgTable("userProgress", {
+  id: uuid().primaryKey().defaultRandom(),
+  lessonId: integer().notNull(),
+  userId: integer().notNull(),
+});
+
+// const lessonTable
+
+module.exports = { usersTable, sessionTable, userProgressTable };

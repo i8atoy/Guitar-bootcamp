@@ -38,24 +38,25 @@ h3 {
 }
 
 h1 {
-  font-size: 3.8rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   color: var(--text-light);
+  align-self: flex-start;
 }
 h1 strong {
   color: var(--primary-accent);
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   text-align: center;
   margin-bottom: 3.5rem;
 }
 h3 {
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
 }
 
 .sub-headline {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   font-weight: 400;
   color: var(--text-light);
   margin-bottom: 2rem;
@@ -75,7 +76,6 @@ h3 {
   opacity: 0.9;
 }
 
-/* --- BUTTONS --- */
 .btn {
   display: inline-block;
   padding: 15px 35px;
@@ -126,23 +126,21 @@ h3 {
 .navbar {
   background-color: var(--bg-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 18px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .logo {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
   color: var(--primary-accent);
 }
 
@@ -150,7 +148,8 @@ h3 {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .nav-links a:not(.btn) {
@@ -166,12 +165,13 @@ h3 {
 
 .hero-section {
   position: relative;
-  height: 90vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  padding: 2rem;
 }
 
 .hero-image {
@@ -188,12 +188,20 @@ h3 {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 40px 0;
+  padding: 40px 20px;
   max-width: 800px;
+  width: 100%;
+  text-shadow: 0 0 8px black;
 }
 
+.hero-greeting {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--primary-accent);
+  margin-top: 20px;
+  text-shadow: 0 0 8px black;
+}
 .section {
-  padding: 80px 0;
+  padding: 60px 0;
 }
 
 .how-it-works {
@@ -271,6 +279,8 @@ footer .container {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 auto;
 }
 
 .footer-links a {
@@ -282,4 +292,33 @@ footer .container {
 
 .footer-links a:hover {
   color: var(--primary-accent);
+}
+
+.progress-label {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: var(--bg-soft);
+  text-shadow: 0 0 8px black;
+  margin-bottom: 1rem;
+}
+
+.progress-container {
+  margin-top: 50px;
+}
+
+.progress-bracket {
+  width: 100%;
+  height: 30px;
+  border: 2px solid var(--bg-soft);
+  border-radius: 10px;
+  padding: 3px; /* creates breathing room */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.progress-percentage {
+  height: 100%;
+  width: 50%;
+  background-color: var(--secondary-accent);
+  border-radius: 6px;
 }
