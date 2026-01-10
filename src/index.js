@@ -163,3 +163,8 @@ app.get("/week4", isLoggedIn, async (req, res) => {
   const currentLesson = result.lessonId;
   res.render("week4", { currentLesson });
 });
+
+app.get("/about", (req, res) => {
+  const file = fs.readFileSync("./pages/about.html");
+  res.send(file.toString());
+});
