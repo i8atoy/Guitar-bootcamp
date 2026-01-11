@@ -168,3 +168,13 @@ app.get("/about", (req, res) => {
   const file = fs.readFileSync("./pages/about.html");
   res.send(file.toString());
 });
+
+app.get("/contact", (req, res) => {
+  const file = fs.readFileSync("./pages/contact.html");
+  res.send(file.toString());
+});
+
+app.get("/lesson1", async (req, res) => {
+  const file = fs.readFileSync("./pages/lesson1.html");
+  res.send(file.toString());
+});

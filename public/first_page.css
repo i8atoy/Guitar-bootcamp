@@ -75,7 +75,6 @@ h3 {
   opacity: 0.9;
 }
 
-/* --- BUTTONS --- */
 .btn {
   display: inline-block;
   padding: 15px 35px;
@@ -268,9 +267,11 @@ footer {
 
 footer .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 auto;
 }
 
 .footer-links a {

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/lesson.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="public/scripts/lesson.js"></script>
+    <title>Lesson <%= lessonNumber %></title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Guitar Bootcamp</div>
+      <ul class="nav-links">
+        <li><a href="/home">Home</a></li>
+        <li>
+          <a href="/logout" class="btn btn-secondary" style="padding: 8px 20px"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div class="lesson-body">
+      <div class="video-side">
+        <div class="video"><%= videoEmbed %></div>
+        <div class="quiz-body">
+          <h3>Lesson Quiz</h3>
+          <p>Test your knowledge on this module...</p>
+          <form id="lesson-quiz">
+            <div class="quiz-question">
+              <label for="q1"><%= quizQuestion %></label>
+              <select id="q1" name="q1">
+                <option value="">-- Select an answer --</option>
+                <option value="C"><%= answer1 %></option>
+                <option value="G"><%= answer2 %></option>
+                <option value="F"><%= answer3 %></option>
+                <option value="D"><%= answer4 %></option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-secondary"
+              style="margin-top: 1rem"
+            >
+              Submit Answer
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-side">
+        <div class="title"><h3><%= lessonTitle %></h3></div>
+        <p class="description"><%= lessonContent %></p>
+        <div class="buttons">
+          <a href="/" class="btn btn-secondary">Previous Lesson</a>
+          <a href="#" class="btn btn-secondary complete">Mark as Complete</a>
+          <a href="#" class="btn btn-secondary next">Next Lesson</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -340,3 +340,7 @@ footer .container {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+.page-content {
+  flex: 1;
+}

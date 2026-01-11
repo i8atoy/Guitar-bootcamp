@@ -33,7 +33,7 @@ body {
 h1 {
   color: var(--primary-accent);
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   text-shadow: 0 0 8px black;
 }
@@ -108,15 +108,21 @@ label {
 }
 
 .navbar {
+  background-color: var(--bg-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
   color: var(--primary-accent);
+  text-decoration: none;
 }
