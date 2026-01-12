@@ -174,7 +174,18 @@ app.get("/contact", (req, res) => {
   res.send(file.toString());
 });
 
-app.get("/lesson1", async (req, res) => {
-  const file = fs.readFileSync("./pages/lesson1.html");
-  res.send(file.toString());
+app.get("/lesson/:id", async (req, res) => {
+  const result = await dbClient.getLessonData(req.params.id);
+  res.render("lesson", {
+    lessonNumber: req.params.id,
+    videoEmbed: result.videoUrl,
+    quizQuestion: result.questionText,
+    answer1: result.questionOptions[0],
+    answer2: result.questionOptions[1],
+    answer3: result.questionOptions[2],
+    answer4: result.questionOptions[3],
+    lessonTitle: result.title,
+    lessonContent: result.description,
+  });
+  console.log(await dbClient.getLessonData(req.params.id));
 });

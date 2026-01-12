@@ -1,5 +1,11 @@
-const { usersTable, sessionTable, userProgressTable } = require("./db/schema");
-const { eq, count } = require("drizzle-orm");
+const {
+  usersTable,
+  sessionTable,
+  userProgressTable,
+  lessonsTable,
+  quizQuestionsTable,
+} = require("./db/schema");
+const { eq, count, getTableColumns } = require("drizzle-orm");
 require("dotenv/config");
 
 class DbClient {
@@ -44,6 +50,21 @@ class DbClient {
 
   async incrementLessonCounter(userId) {
     // await this.#db.update()
+  }
+
+  async getLessonData(lessonId) {
+    const result = await this.#db
+      .select({
+        ...getTableColumns(quizQuestionsTable),
+        ...getTableColumns(lessonsTable),
+      })
+      .from(lessonsTable)
+      .leftJoin(
+        quizQuestionsTable,
+        eq(lessonsTable.id, quizQuestionsTable.lessonId)
+      )
+      .where(eq(lessonId, lessonsTable.id));
+    return result[0];
   }
 }
 

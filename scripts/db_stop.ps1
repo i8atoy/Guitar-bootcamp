@@ -1,2 +1,2 @@
-docker stop postgres
-docker rm postgres
+docker rm -f postgres
+docker volume rm postgres_data

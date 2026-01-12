@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="public/lesson.css" />
+    <link rel="stylesheet" href="/public/lesson.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;700&display=swap"
       rel="stylesheet"
@@ -25,7 +25,19 @@
     </nav>
     <div class="lesson-body">
       <div class="video-side">
-        <div class="video"><%= videoEmbed %></div>
+        <div class="video">
+          <iframe
+            width="1840"
+            height="1035"
+            src="<%= videoEmbed %>"
+            title="GISADA TITANIUM (2024 ) - Prima Impresie !!!"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
         <div class="quiz-body">
           <h3>Lesson Quiz</h3>
           <p>Test your knowledge on this module...</p>
