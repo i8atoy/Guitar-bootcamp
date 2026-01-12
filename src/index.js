@@ -176,6 +176,7 @@ app.get("/contact", (req, res) => {
 
 app.get("/lesson/:id", async (req, res) => {
   const result = await dbClient.getLessonData(req.params.id);
+  console.log(result);
   res.render("lesson", {
     lessonNumber: req.params.id,
     videoEmbed: result.videoUrl,
@@ -187,5 +188,4 @@ app.get("/lesson/:id", async (req, res) => {
     lessonTitle: result.title,
     lessonContent: result.description,
   });
-  console.log(await dbClient.getLessonData(req.params.id));
 });
