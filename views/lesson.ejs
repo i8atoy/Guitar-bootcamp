@@ -41,15 +41,19 @@
         <div class="quiz-body">
           <h3>Lesson Quiz</h3>
           <p>Test your knowledge on this module...</p>
-          <form id="lesson-quiz">
+          <form
+            id="lesson-quiz"
+            method="POST"
+            action="/lesson/<%= lessonNumber %>/check-answers"
+          >
             <div class="quiz-question">
               <label for="q1"><%= quizQuestion %></label>
               <select id="q1" name="q1">
                 <option value="">-- Select an answer --</option>
-                <option value="C"><%= answer1 %></option>
-                <option value="G"><%= answer2 %></option>
-                <option value="F"><%= answer3 %></option>
-                <option value="D"><%= answer4 %></option>
+                <option value="0"><%= answer1 %></option>
+                <option value="1"><%= answer2 %></option>
+                <option value="2"><%= answer3 %></option>
+                <option value="3"><%= answer4 %></option>
               </select>
             </div>
             <button
@@ -67,9 +71,22 @@
         <div class="title"><h3><%= lessonTitle %></h3></div>
         <p class="description"><%= lessonContent %></p>
         <div class="buttons">
-          <a href="/" class="btn btn-secondary">Previous Lesson</a>
-          <a href="#" class="btn btn-secondary complete">Mark as Complete</a>
-          <a href="#" class="btn btn-secondary next">Next Lesson</a>
+          <a href="/lesson/<%= previousLesson %>" class="btn btn-secondary"
+            ><%= previousLesson === 0 ? "Home" : "Previous Lesson" %></a
+          >
+          <a
+            href="/lesson/<%= lessonNumber %>/complete"
+            class="btn btn-secondary complete"
+            data-status="<%= completedDataStatus %>"
+            ><%= completedDataStatus === "already-completed" ? "Completed" :
+            "Mark as Complete" %></a
+          >
+          <a
+            href="/lesson/<%= nextLesson %> "
+            class="btn btn-secondary next"
+            data-status="<%= canPass ? 'completed' : 'in_progress' %>"
+            >Next Lesson</a
+          >
         </div>
       </div>
     </div>

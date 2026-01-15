@@ -1,5 +1,11 @@
 const { sql } = require("drizzle-orm");
-const { integer, pgTable, text, uuid } = require("drizzle-orm/pg-core");
+const {
+  integer,
+  pgTable,
+  text,
+  uuid,
+  boolean,
+} = require("drizzle-orm/pg-core");
 
 const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -22,10 +28,11 @@ const userProgressTable = pgTable("userProgress", {
   userId: integer()
     .notNull()
     .references(() => usersTable.id),
+  quizComplete: boolean().notNull().default(false),
 });
 
 const lessonsTable = pgTable("lessons", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: integer().primaryKey().generatedByDefaultAsIdentity(),
   title: text().notNull().unique(),
   description: text().notNull(),
   videoUrl: text().notNull(),

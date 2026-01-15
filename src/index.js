@@ -88,22 +88,15 @@ app.post("/register", async (req, res) => {
     return;
   }
 
-  const passwordHash = bcrypt.hashSync(req.body.password, 12);
   try {
-    const result = await db
-      .insert(usersTable)
-      .values({
-        name: name.trim(),
-        age: age,
-        email: req.body.email,
-        password: passwordHash,
-      })
-      .returning({ id: usersTable.id });
-
-    const user = result[0];
+    const userId = await dbClient.createUser(
+      name,
+      age,
+      req.body.email,
+      req.body.password
+    );
     const sessionId = randomUUID();
-    await db.insert(sessionTable).values({ id: sessionId, userId: user.id });
-    await dbClient.initUserProgress(user.id);
+    await db.insert(sessionTable).values({ id: sessionId, userId });
     res.cookie("sessionId", sessionId);
   } catch (error) {
     console.error(error);
@@ -174,11 +167,31 @@ app.get("/contact", (req, res) => {
   res.send(file.toString());
 });
 
+app.get("/lesson/0", isLoggedIn, (req, res) => {
+  res.redirect("/home");
+});
+
 app.get("/lesson/:id", async (req, res) => {
-  const result = await dbClient.getLessonData(req.params.id);
-  console.log(result);
+  const error = req.query.error;
+  console.log(error);
+  const lessonId = Number(req.params.id);
+  const result = await dbClient.getLessonData(lessonId);
+  const userProgress = await dbClient.queryUserProgress(req.userId);
+  const quizDone = await dbClient.checkQuizCompletion(req.userId, lessonId);
+  let completedDataStatus = "";
+  if (userProgress <= lessonId && !quizDone) {
+    completedDataStatus = "in_progress";
+  }
+  if (userProgress > lessonId) {
+    completedDataStatus = "already-completed";
+  } else if (userProgress === lessonId && quizDone) {
+    completedDataStatus = "available";
+  }
+
   res.render("lesson", {
     lessonNumber: req.params.id,
+    nextLesson: Number(req.params.id) + 1,
+    previousLesson: Number(req.params.id) - 1,
     videoEmbed: result.videoUrl,
     quizQuestion: result.questionText,
     answer1: result.questionOptions[0],
@@ -187,5 +200,37 @@ app.get("/lesson/:id", async (req, res) => {
     answer4: result.questionOptions[3],
     lessonTitle: result.title,
     lessonContent: result.description,
+    canPass: userProgress > req.params.id,
+    completedDataStatus,
+    quizDone,
   });
+});
+
+app.post("/lesson/:id/check-answers", isLoggedIn, async (req, res) => {
+  const lessonId = Number(req.params.id);
+  console.log(lessonId);
+  const selectedAnswer = Number(req.body.q1);
+
+  if (Number.isNaN(selectedAnswer)) {
+    return res.status(400).json({ error: "No answer selected" });
+  }
+
+  const lessonData = await dbClient.getLessonData(lessonId);
+  console.log(lessonData);
+  const correctIndex = lessonData.questionAnswerIndex;
+
+  const isCorrect = selectedAnswer === correctIndex;
+  if (isCorrect) {
+    console.log(req.userId);
+    console.log(req.params.id);
+    await dbClient.markQuizComplete(req.userId, req.params.id);
+    res.redirect(`/lesson/${lessonId}`);
+    return;
+  }
+  res.redirect(`/lesson/${lessonId}?error=bad_answer`);
+});
+
+app.get("/lesson/:id/complete", isLoggedIn, async (req, res) => {
+  await dbClient.incrementLessonCounter(req.userId);
+  res.redirect(`/lesson/${req.params.id}`);
 });

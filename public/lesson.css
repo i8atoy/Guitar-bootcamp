@@ -210,6 +210,25 @@ p.description {
   pointer-events: none;
 }
 
+.btn-secondary[data-status="available"] {
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.btn-secondary[data-status="available"]:hover {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.btn-secondary[data-status="already-completed"] {
+  border-color: var(--success-color);
+  color: var(--success-color);
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .quiz-body .quiz-question {
   display: flex;
   flex-direction: column;
