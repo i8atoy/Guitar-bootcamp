@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate of Completion | 30-Day Guitar Bootcamp</title>
+    <link rel="stylesheet" href="public/home.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .certificate-page {
+        background-color: var(--bg-soft);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .certificate-container {
+        background-color: white;
+        width: 100%;
+        max-width: 900px;
+        padding: 60px;
+        border: 15px solid var(--text-dark);
+        position: relative;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .certificate-container::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid var(--primary-accent);
+        pointer-events: none;
+      }
+
+      .cert-logo {
+        font-family: var(--font-heading);
+        font-weight: 800;
+        color: var(--primary-accent);
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .cert-title {
+        color: var(--text-dark);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        margin-bottom: 10px;
+      }
+
+      .cert-subtitle {
+        font-family: var(--font-body);
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--secondary-accent);
+        margin-bottom: 40px;
+        font-weight: 700;
+      }
+
+      .student-name {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        color: var(--text-dark);
+        border-bottom: 2px solid var(--bg-soft);
+        display: inline-block;
+        margin: 20px 0;
+        padding: 0 30px;
+      }
+
+      .cert-message {
+        max-width: 600px;
+        margin: 20px auto;
+        font-size: 1.1rem;
+      }
+
+      .cert-footer {
+        margin-top: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .signature-block {
+        border-top: 2px solid var(--text-dark);
+        width: 200px;
+        padding-top: 10px;
+      }
+
+      .print-btn-container {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Guitar Bootcamp</div>
+      <ul class="nav-links">
+        <li><a href="/home">Back to Dashboard</a></li>
+      </ul>
+    </nav>
+
+    <main class="certificate-page">
+      <div class="print-btn-container">
+        <button onclick="window.print()" class="btn btn-primary">
+          Download / Print Diploma
+        </button>
+      </div>
+
+      <div class="certificate-container">
+        <div class="cert-logo">Guitar Bootcamp</div>
+
+        <h1 class="cert-title">Certificate</h1>
+        <p class="cert-subtitle">of Completion</p>
+
+        <p>This is to certify that</p>
+        <h2 class="student-name"><%= name %></h2>
+
+        <p class="cert-message">
+          Has successfully completed the
+          <strong>30-Day Guitar Bootcamp Challenge</strong>. Demonstrating
+          dedication to rhythm, melody, and the art of guitar.
+        </p>
+
+        <div class="cert-footer">
+          <div class="signature-block">
+            <p><strong>Date</strong></p>
+            <p><%= new Date().toLocaleDateString() %></p>
+          </div>
+          <div class="cert-badge">
+            <span style="font-size: 3rem">🎸</span>
+          </div>
+          <div class="signature-block">
+            <p><strong>Instructor</strong></p>
+            <p>Joshua Pop</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

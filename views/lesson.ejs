@@ -85,10 +85,11 @@
             "Mark as Complete" %></a
           >
           <a
-            href="/lesson/<%= nextLesson %> "
+            href="<%= finishedCourse ? '/diploma' : '/lesson/' + nextLesson %>"
+
             class="btn btn-secondary next"
             data-status="<%= canPass ? 'completed' : 'in_progress' %>"
-            >Next Lesson</a
+            ><%= finishedCourse ? "Get Diploma" : "Next Lesson" %></a
           >
         </div>
       </div>

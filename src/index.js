@@ -177,6 +177,7 @@ app.get("/lesson/:id", async (req, res) => {
   const result = await dbClient.getLessonData(lessonId);
   const userProgress = await dbClient.queryUserProgress(req.userId);
   const quizDone = await dbClient.checkQuizCompletion(req.userId, lessonId);
+
   let completedDataStatus = "";
   if (userProgress <= lessonId && !quizDone) {
     completedDataStatus = "in_progress";
@@ -185,6 +186,10 @@ app.get("/lesson/:id", async (req, res) => {
     completedDataStatus = "already-completed";
   } else if (userProgress === lessonId && quizDone) {
     completedDataStatus = "available";
+  }
+  let finishedCourse = false;
+  if (userProgress > 28) {
+    finishedCourse = true;
   }
 
   res.render("lesson", {
@@ -203,6 +208,7 @@ app.get("/lesson/:id", async (req, res) => {
     canPass: userProgress > req.params.id,
     completedDataStatus,
     quizDone,
+    finishedCourse,
   });
 });
 
@@ -233,4 +239,9 @@ app.post("/lesson/:id/check-answers", isLoggedIn, async (req, res) => {
 app.get("/lesson/:id/complete", isLoggedIn, async (req, res) => {
   await dbClient.incrementLessonCounter(req.userId);
   res.redirect(`/lesson/${req.params.id}`);
+});
+
+app.get("/diploma", isLoggedIn, async (req, res) => {
+  const result = await dbClient.getUserData(req.userId);
+  res.render("diploma", { name: result.name });
 });
