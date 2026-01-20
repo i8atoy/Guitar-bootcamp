@@ -173,7 +173,6 @@ app.get("/lesson/0", isLoggedIn, (req, res) => {
 
 app.get("/lesson/:id", async (req, res) => {
   const error = req.query.error;
-  console.log(error);
   const lessonId = Number(req.params.id);
   const result = await dbClient.getLessonData(lessonId);
   const userProgress = await dbClient.queryUserProgress(req.userId);
@@ -189,6 +188,7 @@ app.get("/lesson/:id", async (req, res) => {
   }
 
   res.render("lesson", {
+    error,
     lessonNumber: req.params.id,
     nextLesson: Number(req.params.id) + 1,
     previousLesson: Number(req.params.id) - 1,

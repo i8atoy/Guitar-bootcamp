@@ -55,6 +55,9 @@
                 <option value="2"><%= answer3 %></option>
                 <option value="3"><%= answer4 %></option>
               </select>
+              <% if (error === "bad_answer") { %>
+                <div class="error">Incorrect answer. Please try again</div>
+              <% } %>
             </div>
             <button
               type="submit"
