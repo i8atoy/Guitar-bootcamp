@@ -77,18 +77,29 @@ h3 {
 
 .btn {
   display: inline-block;
-  padding: 15px 35px;
+  padding: 12px 28px;
   font-family: var(--font-heading);
   font-weight: 700;
   text-decoration: none;
   border-radius: 50px;
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   border: none;
   cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-accent);
+  border: 2px solid var(--primary-accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-accent);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .btn-primary {
@@ -103,19 +114,6 @@ h3 {
   box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
 }
 
-.btn-secondary {
-  background-color: transparent;
-  color: var(--primary-accent);
-  border: 2px solid var(--primary-accent);
-  padding: 13px 30px;
-}
-
-.btn-secondary:hover {
-  background-color: var(--primary-accent);
-  color: white;
-  transform: translateY(-2px);
-}
-
 .large-btn {
   padding: 18px 45px;
   font-size: 1.3rem;
@@ -125,31 +123,28 @@ h3 {
 .navbar {
   background-color: var(--bg-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 2rem;
-}
-
 .logo {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
   color: var(--primary-accent);
+  text-decoration: none;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 }
 
 .nav-links a:not(.btn) {

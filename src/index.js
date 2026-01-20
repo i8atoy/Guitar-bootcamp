@@ -93,7 +93,7 @@ app.post("/register", async (req, res) => {
       name,
       age,
       req.body.email,
-      req.body.password
+      req.body.password,
     );
     const sessionId = randomUUID();
     await db.insert(sessionTable).values({ id: sessionId, userId });
