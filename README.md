@@ -1,4 +1,4 @@
-#30 Day Guitar Bootcamp
+# 30 Day Guitar Bootcamp
 
 A simple Node.js application using Express, Drizzle ORM, PostgreSQL, and EJS templates.
 
@@ -8,33 +8,42 @@ Before running this project, make sure you have:
 - [Node.js](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 
-  1.Clone the repository
+## Clone the repository
 
+```bash
 git clone [<repository_url>](https://github.com/i8atoy/Guitar-bootcamp.git)
+```
 
-2.Install dependencies
+## Install dependencies
 
+```bash
 npm install
+```
 
-3.Set up environment variables
+## Set up environment variables
 
-Create a .env file in the root of your project:
+Create a .env file in the root of your project and add this inside:
 
 DATABASE_URL=postgresql://user:password@localhost:5432/database_name
 PORT=3000
 
-4.Database setup
+## Database setup
+
+```bash
 npx drizzle-kit push
+```
 
-5.Start server
+## Start server
 
+```bash
 npm run dev
+```
 
-6.Navigate to localhost
+## Navigate to localhost
 
 http://localhost:3000
 
-7.DEPENDENCIES
+## DEPENDENCIES
 
 express – Web framework
 
