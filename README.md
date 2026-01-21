@@ -1,4 +1,4 @@
-30 Day Guitar Bootcamp
+#30 Day Guitar Bootcamp
 
 A simple Node.js application using Express, Drizzle ORM, PostgreSQL, and EJS templates.
 
