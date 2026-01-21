@@ -1,6 +1,6 @@
 # 30 Day Guitar Bootcamp
 
-A simple Node.js application using Express, Drizzle ORM, PostgreSQL, and EJS templates.
+30 Day Guitar Bootcamp – A structured Node.js web app guiding users through 28 sequentially unlocked guitar lessons, complete with quizzes after each lesson and a certificate of completion at the end.
 
 --Prereqs
 Before running this project, make sure you have:
